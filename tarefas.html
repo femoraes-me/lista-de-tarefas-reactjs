@@ -8,32 +8,62 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Lista de Tarefas</h1>
-            </div>
-        </div>
-        <form action="">
-            <div class="row">
-                <div class="col-auto">
-                    <label for="novaTarefa" class="col-form-label">Nova Tarefa</label>
-                </div>
-                <div class="col" >
-                    <input type="text" name="novaTarefa" id="novaTarefa" class="form-control">
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary">Criar Tarefa</button>
-                </div>
-            </div>
-        </form>
-    </div>
 
+    <div id="app"></div>
 
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        
+        function App(){
+            
+            return (
+                <div className="container">
+                    
+                    <div className="row">
+                        <div className="col">
+                            <h1 className="text-center mt-5">Lista de Tarefas</h1>
+                        </div>
+                    </div>
+                    
+                    <form action="" className="mt-5">
+                        <div className="row">
+                            <div className="col-auto">
+                                <label htmlFor="novaTarefa" className="col-form-label">Nova Tarefa</label>
+                            </div>
+                            <div className="col" >
+                                <input type="text" name="novaTarefa" id="novaTarefa" className="form-control" />
+                            </div>
+                            <div className="col-auto">
+                                <button type="submit" className="btn btn-primary">Criar Tarefa</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <ul className="list-group mt-5">
+                        <li className="list-group-item">
+                            <div className="row">
+                                <div className="col">Tarefa 1</div>
+                                <div className="col-auto"><button type="button" className="btn-close" aria-label="Close"></button></div>
+                            </div>
+                        </li>
+                        <li className="list-group-item">
+                            <div className="row">
+                                <div className="col">Tarefa 2</div>
+                                <div className="col-auto"><button type="button" className="btn-close" aria-label="Close"></button></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
+            );
+        }
+
+        var rootElement = React.createElement(App);
+        var container = document.querySelector('#app');
+        ReactDOM.render(rootElement, container);
+    </script>
 
 </body>
 </html>
