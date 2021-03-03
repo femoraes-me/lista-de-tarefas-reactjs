@@ -18,8 +18,11 @@
     <script type="text/babel">
         
         function App(){
+
+            const tarefas = ['adfiuahdiufa', 'isdhhuha'];
             
             return (
+                // Container Principal
                 <div className="container">
                     
                     <div className="row">
@@ -43,26 +46,34 @@
                     </form>
                     
                     <ul className="list-group mt-5">
-                        <li className="list-group-item">
-                            <div className="row">
-                                <div className="col">Tarefa 1</div>
-                                <div className="col-auto"><button type="button" className="btn-close" aria-label="Close"></button></div>
-                            </div>
-                        </li>
-                        <li className="list-group-item">
-                            <div className="row">
-                                <div className="col">Tarefa 2</div>
-                                <div className="col-auto"><button type="button" className="btn-close" aria-label="Close"></button></div>
-                            </div>
-                        </li>
+
+                        {tarefas.map( mostrarItemLista )}
+
                     </ul>
                 </div> 
             );
         }
 
+
+        function mostrarItemLista(nomeTarefa, indice) {
+            return (
+
+                <li className="list-group-item" key={indice}>
+                    <div className="row">
+                        <div className="col">{nomeTarefa}</div>
+                        <div className="col-auto">
+                            <button type="button" className="btn-close" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </li>
+
+            );
+        } 
+
         var rootElement = React.createElement(App);
         var container = document.querySelector('#app');
         ReactDOM.render(rootElement, container);
+    
     </script>
 
 </body>
