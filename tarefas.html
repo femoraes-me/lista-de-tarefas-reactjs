@@ -19,7 +19,13 @@
         
         function App(){
 
+            const [novaTarefa, setNovaTarefa] = React.useState(''); // variavel de estado interno do componente
+
             const tarefas = ['adfiuahdiufa', 'isdhhuha'];
+
+            function mudarNovaTarefa(evento) {
+                setNovaTarefa(evento.target.value);
+            }
             
             return (
                 // Container Principal
@@ -37,7 +43,7 @@
                                 <label htmlFor="novaTarefa" className="col-form-label">Nova Tarefa</label>
                             </div>
                             <div className="col" >
-                                <input type="text" name="novaTarefa" id="novaTarefa" className="form-control" />
+                                <input type="text" name="novaTarefa" id="novaTarefa" className="form-control" value={novaTarefa} onChange={mudarNovaTarefa} />
                             </div>
                             <div className="col-auto">
                                 <button type="submit" className="btn btn-primary">Criar Tarefa</button>
