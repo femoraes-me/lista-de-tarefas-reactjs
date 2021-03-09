@@ -20,11 +20,27 @@
         function App(){
 
             const [novaTarefa, setNovaTarefa] = React.useState(''); // variavel de estado interno do componente
+            const [tarefas, setTarefas] = React.useState(['Tomar Café', 'Tomar Banho']); // variaves de tarefas
 
-            const tarefas = ['adfiuahdiufa', 'isdhhuha'];
-
+            // mudando o valor da variavél tarefa
             function mudarNovaTarefa(evento) {
                 setNovaTarefa(evento.target.value);
+            }
+
+            // adicionando nova tarefa no vetor de estado de tarefas
+            function enviarNovaTarefa(evento) {
+                evento.preventDefault();
+
+                setTarefas( [...tarefas, novaTarefa] ); // adicionando na lista
+
+                setNovaTarefa(''); // limpar formulario de nova tarefa
+            }
+
+
+            function removerTarefa(indice) {
+                const copiaVetor  = [...tarefas];
+                copiaVetor.splice(indice, 1);
+                setTarefas(copiaVetor);
             }
             
             return (
@@ -37,7 +53,7 @@
                         </div>
                     </div>
                     
-                    <form action="" className="mt-5">
+                    <form onSubmit={enviarNovaTarefa} className="mt-5">
                         <div className="row">
                             <div className="col-auto">
                                 <label htmlFor="novaTarefa" className="col-form-label">Nova Tarefa</label>
@@ -53,7 +69,9 @@
                     
                     <ul className="list-group mt-5">
 
-                        {tarefas.map( mostrarItemLista )}
+                        {tarefas.map( function(nomeTarefa, indice) {
+                            return mostrarItemLista(nomeTarefa, indice, removerTarefa);
+                        })}
 
                     </ul>
                 </div> 
@@ -61,14 +79,23 @@
         }
 
 
-        function mostrarItemLista(nomeTarefa, indice) {
+        function mostrarItemLista(nomeTarefa, indice, removerTarefa) {
             return (
 
                 <li className="list-group-item" key={indice}>
                     <div className="row">
                         <div className="col">{nomeTarefa}</div>
                         <div className="col-auto">
-                            <button type="button" className="btn-close" aria-label="Close"></button>
+                            <button 
+                                type="button" 
+                                className="btn-close" 
+                                aria-label="Close" 
+                                onClick={ 
+                                    function() { 
+                                        removerTarefa(indice); 
+                                    }
+                                }>
+                            </button>
                         </div>
                     </div>
                 </li>
