@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Lista de Tarefa | ReactJS</title>
 </head>
 <body>
 
@@ -15,99 +15,7 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <script type="text/babel">
-        
-        function App(){
-
-            const [novaTarefa, setNovaTarefa] = React.useState(''); // variavel de estado interno do componente
-            const [tarefas, setTarefas] = React.useState(['Tomar Café', 'Tomar Banho']); // variaves de tarefas
-
-            // mudando o valor da variavél tarefa
-            function mudarNovaTarefa(evento) {
-                setNovaTarefa(evento.target.value);
-            }
-
-            // adicionando nova tarefa no vetor de estado de tarefas
-            function enviarNovaTarefa(evento) {
-                evento.preventDefault();
-
-                setTarefas( [...tarefas, novaTarefa] ); // adicionando na lista
-
-                setNovaTarefa(''); // limpar formulario de nova tarefa
-            }
-
-
-            function removerTarefa(indice) {
-                const copiaVetor  = [...tarefas];
-                copiaVetor.splice(indice, 1);
-                setTarefas(copiaVetor);
-            }
-            
-            return (
-                // Container Principal
-                <div className="container">
-                    
-                    <div className="row">
-                        <div className="col">
-                            <h1 className="text-center mt-5">Lista de Tarefas</h1>
-                        </div>
-                    </div>
-                    
-                    <form onSubmit={enviarNovaTarefa} className="mt-5">
-                        <div className="row">
-                            <div className="col-auto">
-                                <label htmlFor="novaTarefa" className="col-form-label">Nova Tarefa</label>
-                            </div>
-                            <div className="col" >
-                                <input type="text" name="novaTarefa" id="novaTarefa" className="form-control" value={novaTarefa} onChange={mudarNovaTarefa} />
-                            </div>
-                            <div className="col-auto">
-                                <button type="submit" className="btn btn-primary">Criar Tarefa</button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <ul className="list-group mt-5">
-
-                        {tarefas.map( function(nomeTarefa, indice) {
-                            return mostrarItemLista(nomeTarefa, indice, removerTarefa);
-                        })}
-
-                    </ul>
-                </div> 
-            );
-        }
-
-
-        function mostrarItemLista(nomeTarefa, indice, removerTarefa) {
-            return (
-
-                <li className="list-group-item" key={indice}>
-                    <div className="row">
-                        <div className="col">{nomeTarefa}</div>
-                        <div className="col-auto">
-                            <button 
-                                type="button" 
-                                className="btn-close" 
-                                aria-label="Close" 
-                                onClick={ 
-                                    function() { 
-                                        removerTarefa(indice); 
-                                    }
-                                }>
-                            </button>
-                        </div>
-                    </div>
-                </li>
-
-            );
-        } 
-
-        var rootElement = React.createElement(App);
-        var container = document.querySelector('#app');
-        ReactDOM.render(rootElement, container);
-    
-    </script>
+    <script src="tarefas.jsx" type="text/babel"></script>
 
 </body>
 </html>
